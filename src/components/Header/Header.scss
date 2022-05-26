@@ -1,0 +1,43 @@
+.header{
+    margin: 0;
+    padding: 1em 2em;
+    background-color: #222129;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.header-company{
+    display: flex;
+    flex-direction: row;
+}
+
+.header-company p{
+    color: #856c5a;
+    font-size: 18px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: auto 1em;
+}
+
+.header-account{
+    display: flex;
+    flex-direction: row;
+}
+
+.header-account a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #856c5a;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-decoration: none;
+}
+
+.header-account a:link{
+    text-decoration: none;
+    color: red;
+}
+
+.header-account-name{
+    margin: auto 1em;
+}
