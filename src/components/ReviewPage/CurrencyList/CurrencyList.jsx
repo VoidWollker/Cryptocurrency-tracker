@@ -13,7 +13,7 @@ export default function CurrencyList({currencyArrayProps}) {
             return(
                 <CurrencyItem
                     labelText={currency.name}
-                    currencyPrice={currency.market_data.current_price.rub}
+                    currencyPrice={currency.market_data.current_price.usd}
                     key={currency.id}
                 />
             )
