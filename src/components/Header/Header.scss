@@ -11,6 +11,10 @@
     display: flex;
     flex-direction: row;
 }
+ 
+.header-company a:link{
+    text-decoration: none;
+}
 
 .header-company p{
     color: #856c5a;
