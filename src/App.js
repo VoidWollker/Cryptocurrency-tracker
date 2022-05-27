@@ -20,6 +20,13 @@ function App() {
         let coin = await axios.get('https://api.coingecko.com/api/v3/coins/' + coinName)
         resCoins.push(coin.data)
       }
+
+      let usd = {symbol: 'usd', market_data: {current_price: {}}}
+      for (let currency of resCoins){
+        usd.market_data.current_price[currency.id] =  1 / currency.market_data.current_price.usd
+      }
+      resCoins.push(usd)
+
       setCoins(resCoins);
     } catch (error) {
       console.error(error);
@@ -44,7 +51,7 @@ function App() {
                 />
               }
             />
-            <Route path='/converter' element={<Converter currentCurrency='bitcoin' currencyNames={coinsName} coins={coins}/>}/>
+            <Route path='/converter' element={<Converter currencyNames={coinsName} coins={coins}/>}/>
           </Route>
           <Route path="/profile"/>
         </Routes>

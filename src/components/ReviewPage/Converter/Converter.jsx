@@ -8,20 +8,27 @@ import './Converter.scss'
 export default class Converter extends Component{
     constructor(props){
         super(props)
+
+        
+        console.log(this.props.coins);
+        
         this.toggleLeftDropDown = this.toggleLeftDropDown.bind(this);
         this.toggleRigthDropDown = this.toggleRigthDropDown.bind(this);
+        this.calculateCurrencyPrice = this.calculateCurrencyPrice.bind(this)
         this.chooseItem = this.chooseItem.bind(this)
         this.changeInputValue = this.changeInputValue.bind(this);
+
         this.state = {
             leftInputValue: '',
             leftDropdownOpen: false,
             leftDropdownSelectedIndex: 0,
-            leftDropdownValue: this.props.currentCurrency,
+            leftDropdownValue: this.props.currencyNames[0],
             
             rigthInputValue: '',
             rigthDropdownOpen: false,
-            rigthDropdownSelectedIndex: 0,
-            rigthDropdownValue: this.props.currentCurrency,
+            rigthDropdownSelectedIndex: 1,
+            rigthDropdownValue: this.props.currencyNames[1],
+
 
             currencyNames: [...this.props.currencyNames, 'usd'],
             coins: this.props.coins
@@ -39,38 +46,40 @@ export default class Converter extends Component{
             rigthDropdownOpen: !this.state.rigthDropdownOpen
         });
     }
+
+    chooseItem(event, choosenDropDown, choosenCurrencyName, choosenCurrencyIndex){
+        let antiChoosenDropDown;
+        if (choosenDropDown == 'rigth') {antiChoosenDropDown = 'left'}
+        else { antiChoosenDropDown = 'rigth'}
+        
+        this.setState({
+            [choosenDropDown + 'DropdownValue']: choosenCurrencyName,
+            [choosenDropDown + 'DropdownSelectedIndex']: choosenCurrencyIndex
+        })
+
+        this.calculateCurrencyPrice(this.state[antiChoosenDropDown + 'InputValue'], choosenCurrencyIndex,
+            this.state[antiChoosenDropDown + 'DropdownSelectedIndex'])
+    }
     
     changeInputValue(event, choosenInput){
-        if (choosenInput=='left') {
-            this.setState({
-                leftInputValue: event.target.value.replace(/\D/g, '')
-            })
-            console.log(this.state.coins);
-            if (this.state.rigthDropdownValue == 'usd'){
-                //rigthInputValue: leftInputValue * coins[this.state.leftDropdownValue]
-            }
-        }
-        else if (choosenInput=='rigth'){
-            console.log(event.target);
-            this.setState({
-                rigthInputValue: (event.target.value.replace(/\D/g, ''))
-            })
-        }
+
+        let antiChoosenInput;
+        if (choosenInput == 'rigth') {antiChoosenInput = 'left'}
+        else { antiChoosenInput = 'rigth'}
+
+        this.setState({
+            [choosenInput + 'InputValue']: event.target.value.replace(/\D/g, '')
+        })
+
+        this.calculateCurrencyPrice(event.target.value.replace(/\D/g, ''), this.state[choosenInput + 'DropdownSelectedIndex'],
+            this.state[antiChoosenInput + 'DropdownSelectedIndex'])
     }
 
-    chooseItem(event, choosenDropDown, choosenCurrency, index){
-        if (choosenDropDown=='left') {
-            this.setState({
-                leftDropdownValue: choosenCurrency,
-                leftDropdownSelectedIndex: index
-            })
-        }
-        else if (choosenDropDown=='rigth'){
-            this.setState({
-                rigthDropdownValue: choosenCurrency,
-                rigthDropdownSelectedIndex: index
-            })
-        }
+    calculateCurrencyPrice(inputValue, beginCurrencyIndex, endCurrencyIndex){
+        this.setState({
+            rigthInputValue: Number(inputValue) * Number(this.state.coins[beginCurrencyIndex].market_data.current_price
+                [this.state.coins[endCurrencyIndex].symbol])
+        })
     }
 
     render(){
