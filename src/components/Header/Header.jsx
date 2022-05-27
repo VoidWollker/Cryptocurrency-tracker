@@ -8,7 +8,7 @@ export default function Header({userName, userPhoto}){
     return(
         <header className="header">
             <div className="header-company">
-                <Link to="review">
+                <Link to="">
                     <img src="https://bs.world/templates/wss/images/logo.svg" alt=""/>
                     <p className="">Blockchain Solutions</p>
                 </Link>

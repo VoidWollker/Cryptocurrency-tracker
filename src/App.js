@@ -5,13 +5,13 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import './App.css';
 
 import Header from './components/Header/Header';
+import Converter from './components/ReviewPage/Converter/Converter';
 import CurrencyList from './components/ReviewPage/CurrencyList/CurrencyList';
 
 
 function App() {
   const [coinsName, setCoinsName] = useState(['bitcoin', 'ethereum'])
   const [coins, setCoins] = useState([])
-
 
   const getData = async () => {
     try {
@@ -36,14 +36,16 @@ function App() {
       <BrowserRouter>
         <Header userName='Roman Nichipurenko' userPhoto=''/>
         <Routes>
-          <Route path="/review"
-            element={
-              <CurrencyList 
-                //currencyArrayProps={[{id: 1, name: 'BTC', price: 100}, {id: 2, name: 'ETH', price: 200}, {id: 3, name: 'USD', price: 150}]}
-                currencyArrayProps={coins}
-              />
-            }
-          />
+          <Route path='/'>
+            <Route path="/review"
+              element={
+                <CurrencyList 
+                  currencyArray={coins}
+                />
+              }
+            />
+            <Route path='/converter' element={<Converter currentCurrency='bitcoin' currencyNames={coinsName} coins={coins}/>}/>
+          </Route>
           <Route path="/profile"/>
         </Routes>
       </BrowserRouter>
