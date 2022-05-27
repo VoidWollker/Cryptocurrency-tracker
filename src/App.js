@@ -9,14 +9,17 @@ import CurrencyList from './components/ReviewPage/CurrencyList/CurrencyList';
 
 
 function App() {
-  const [coins, setCoins] = useState([]);
+  const [coinsName, setCoinsName] = useState(['bitcoin', 'ethereum'])
+  const [coins, setCoins] = useState([])
+
 
   const getData = async () => {
     try {
-      const btc = await axios.get('https://api.coingecko.com/api/v3/coins/bitcoin')
-      const eth = await axios.get('https://api.coingecko.com/api/v3/coins/ethereum')
-      const resCoins = [btc.data, eth.data]
-      console.log(resCoins);
+      const resCoins = []
+      for (let coinName of coinsName){
+        let coin = await axios.get('https://api.coingecko.com/api/v3/coins/' + coinName)
+        resCoins.push(coin.data)
+      }
       setCoins(resCoins);
     } catch (error) {
       console.error(error);
