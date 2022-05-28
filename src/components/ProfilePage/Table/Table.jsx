@@ -29,28 +29,37 @@ export default function Table(props){
       },{
         dataField: 'market_data.current_price.usd',
         text: 'Price',
+        headerStyle: {
+            width: '17%'
+        },
         formatter: (cell) =>(
             <span>${cell}</span>
         )
       },{
         dataField: 'market_data.price_change_percentage_1h_in_currency.usd',
         text: '1h',
+        headerStyle: {
+            width: '17%'
+        },
         formatter: (cell, row) =>(
             <span>{cell}%</span>
         )
       }, {
         dataField: 'market_data.price_change_percentage_24h_in_currency.usd',
         text: '24h',
-        formatter: (cell, row) =>(
+        headerStyle: {
+            width: '17%'
+        },
+        formatter: (cell) =>(
             <span>{cell}%</span>
         )
       },{
-        formatter: () =>(
+        formatter: (rowIndex) =>(
             <div className="buttonsRow">
-                <Button>+</Button>
-                <Input/>
-                <Button>-</Button>
-                <Button><FontAwesomeIcon icon={faTrash}/></Button>
+                <Button className="buttonsRow-button">+</Button>
+                <Input className="buttonsRow-input"/>
+                <Button className="buttonsRow-button">-</Button>
+                <Button className="buttonsRow-button" onClick={e => console.log(e)}><FontAwesomeIcon icon={faTrash}/></Button>
             </div>
         )
       }

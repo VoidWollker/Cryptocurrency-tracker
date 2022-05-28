@@ -17,6 +17,7 @@ export default class ProfilePage extends Component{
             dropDownOpen: false,
             coins: this.props.coins,
             currencyProfileList: [],
+            holding: {},
             balance: 0
         }
     }
@@ -32,6 +33,10 @@ export default class ProfilePage extends Component{
             currencyProfileList: [...this.state.currencyProfileList, coin]
         })
     }
+
+    // addToHolding(currnecyName){
+    //     this
+    // }
     
     // removeFromCurrentCurrency(coin){
     //     const index = this.state.currencyProfileList.indexOf(coin);
