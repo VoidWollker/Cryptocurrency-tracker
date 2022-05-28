@@ -1,0 +1,26 @@
+import React from "react";
+import {} from 'plotly.js-dist'
+
+import './Chart.scss'
+
+export default function Chart(){
+    var trace1 = {
+        x: [1, 2, 3, 4],
+        y: [10, 15, 13, 17],
+        type: 'scatter'
+    };
+      
+    var trace2 = {
+        x: [1, 2, 3, 4],
+        y: [16, 5, 11, 9],
+        type: 'scatter'
+    };
+      
+    var data = [trace1, trace2];
+      
+    Plotly.newPlot('myDiv', data);
+
+    return(
+        <div id='myDiv'></div>
+    )
+}

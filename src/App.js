@@ -1,12 +1,11 @@
 import axios from 'axios';
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import {BrowserRouter, Route, Route} from 'react-router-dom'
 
 import './App.css';
 
 import Header from './components/Header/Header';
-import Converter from './components/ReviewPage/Converter/Converter';
-import CurrencyList from './components/ReviewPage/CurrencyList/CurrencyList';
+import HomePage from './components/HomePage/HomePage'
 
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
         resCoins.push(coin.data)
       }
 
-      let usd = {symbol: 'usd', market_data: {current_price: {}}}
+      let usd = {name: 'USD', symbol: 'usd', market_data: {current_price: {}}}
       for (let currency of resCoins){
         usd.market_data.current_price[currency.id] =  1 / currency.market_data.current_price.usd
       }
@@ -43,16 +42,7 @@ function App() {
       <BrowserRouter>
         <Header userName='Roman Nichipurenko' userPhoto=''/>
         <Routes>
-          <Route path='/'>
-            <Route path="/review"
-              element={
-                <CurrencyList 
-                  currencyArray={coins}
-                />
-              }
-            />
-            <Route path='/converter' element={<Converter currencyNames={coinsName} coins={coins}/>}/>
-          </Route>
+          <Route path='/' element={<HomePage coins={coins} coinsName={coinsName}/>}/>
           <Route path="/profile"/>
         </Routes>
       </BrowserRouter>

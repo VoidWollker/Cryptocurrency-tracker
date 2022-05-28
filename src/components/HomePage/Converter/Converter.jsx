@@ -60,7 +60,7 @@ export default class Converter extends Component{
         this.calculateCurrencyPrice(this.state[antiChoosenDropDown + 'InputValue'], choosenCurrencyIndex,
             this.state[antiChoosenDropDown + 'DropdownSelectedIndex'])
     }
-    
+
     changeInputValue(event, choosenInput){
 
         let antiChoosenInput;

@@ -9,13 +9,15 @@ export default function CurrencyList({currencyArray}) {
         <div className="currencyList">
         <h2>Current prices of coins</h2>    
         {currencyArray.map((currency =>{
-            return(
-                <CurrencyItem
-                    labelText={currency.name}
-                    currencyPrice={currency.market_data.current_price.usd}
-                    key={currency.id}
-                />
-            )
+            if (currency.name != 'USD'){
+                return(
+                    <CurrencyItem
+                        labelText={currency.name}
+                        currencyPrice={currency.market_data.current_price.usd}
+                        key={currency.id}
+                    />
+                )
+            }
         }))}
     </div>
     )
