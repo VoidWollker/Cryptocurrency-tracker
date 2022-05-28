@@ -1,0 +1,15 @@
+thead, tbody, tfoot, tr, td, th {
+    border-color: #bca08a;
+    border-style: solid;
+    border-width: 0;
+    color: #bca08a;
+}
+
+.table{
+    padding: 0 40px;
+}
+
+.buttonsRow{
+    display: flex;
+    flex-direction: row;
+}

@@ -6,10 +6,11 @@ import './App.css';
 
 import Header from './components/Header/Header';
 import HomePage from './components/HomePage/HomePage'
+import ProfilePage from './components/ProfilePage/ProfilePage';
 
 
 function App() {
-  const [coinsName, setCoinsName] = useState(['bitcoin', 'ethereum'])
+  const [coinsName, setCoinsName] = useState(['bitcoin', 'ethereum', 'solana', 'dogecoin'])
   const [coins, setCoins] = useState([])
 
   const getData = async () => {
@@ -43,7 +44,7 @@ function App() {
         <Header userName='Roman Nichipurenko' userPhoto=''/>
         <Routes>
           <Route path='/' element={<HomePage coins={coins} coinsName={coinsName}/>}/>
-          <Route path="/profile"/>
+          <Route path="/profile" element={<ProfilePage coins={coins}/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -9,11 +9,11 @@ export default class Converter extends Component{
     constructor(props){
         super(props)
 
-        let usd = {name: 'USD', symbol: 'usd', market_data: {current_price: {}}}
-        for (let currency of this.props.coins){
-            usd.market_data.current_price[currency.id] =  1 / currency.market_data.current_price.usd
-        }
-        this.props.coins.push(usd)
+        // let usd = {name: 'USD', symbol: 'usd', market_data: {current_price: {}}}
+        // for (let currency of this.props.coins){
+        //     usd.market_data.current_price[currency.id] =  1 / currency.market_data.current_price.usd
+        // }
+        // this.props.coins.push(usd)
         
         this.toggleLeftDropDown = this.toggleLeftDropDown.bind(this);
         this.toggleRigthDropDown = this.toggleRigthDropDown.bind(this);

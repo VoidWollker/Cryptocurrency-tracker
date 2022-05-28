@@ -1,0 +1,24 @@
+.profilePage-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 80px;
+}
+
+.profilePage-header h2{
+    color: #bca08a;
+}
+
+.profilePage-header-button{
+    color: #bca08a;
+    background-color: #222129;
+    border-color: #bca08a;
+    border-width: 3px;
+    border-radius: 0px;
+}
+
+.profilePage-header-button:hover{
+    background-color: #bca08a;
+    color: #222129;
+    border-color: #222129;
+}
