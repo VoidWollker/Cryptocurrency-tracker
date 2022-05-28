@@ -20,11 +20,11 @@ function App() {
         resCoins.push(coin.data)
       }
 
-      let usd = {name: 'USD', symbol: 'usd', market_data: {current_price: {}}}
-      for (let currency of resCoins){
-        usd.market_data.current_price[currency.id] =  1 / currency.market_data.current_price.usd
-      }
-      resCoins.push(usd)
+      // let usd = {name: 'USD', symbol: 'usd', market_data: {current_price: {}}}
+      // for (let currency of resCoins){
+      //   usd.market_data.current_price[currency.id] =  1 / currency.market_data.current_price.usd
+      // }
+      // resCoins.push(usd)
 
       setCoins(resCoins);
     } catch (error) {
