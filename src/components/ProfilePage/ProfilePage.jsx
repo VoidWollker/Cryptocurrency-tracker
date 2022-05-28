@@ -64,7 +64,7 @@ export default class ProfilePage extends Component{
                     </Dropdown>
                 </div>
                 <Balance totalBalance={this.state.balance}/>
-                <Table coins={this.state.currencyProfileList} delete={this.removeFromCurrentCurrency}/>
+                {/* <Table coins={this.state.currencyProfileList} delete={this.removeFromCurrentCurrency}/> */}
             </div>
         )
     }

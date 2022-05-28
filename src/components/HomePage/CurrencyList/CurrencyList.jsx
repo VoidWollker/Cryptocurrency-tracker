@@ -3,7 +3,7 @@ import CurrencyItem from "../CurrencyItem/CurrencyItem";
 
 import'./CurrencyList.scss' 
 
-export default function CurrencyList({currencyArray}) {
+export default function CurrencyList({currencyArray, setSelectedCurrency}) {
 
     return(
         <div className="currencyList">
@@ -12,8 +12,8 @@ export default function CurrencyList({currencyArray}) {
             if (currency.name != 'USD'){
                 return(
                     <CurrencyItem
-                        labelText={currency.name}
-                        currencyPrice={currency.market_data.current_price.usd}
+                        setSelectedCurrency={setSelectedCurrency}
+                        coin={currency}
                         key={currency.id}
                     />
                 )

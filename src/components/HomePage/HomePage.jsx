@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Converter from "./Converter/Converter";
 import CurrencyList from './CurrencyList/CurrencyList'
+import CurrencyChart from './CurrencyChart/CurrencyChart'
 
 export default function ReviewPage({coins, coinsName}){
-    console.log(coins);
+    const [selectedCurrency, setSelectedCurrency] = useState({})
+
+    useEffect(() =>{
+        console.log(selectedCurrency);
+    })
 
     return(
         <div className="reviewPage">
-           <CurrencyList currencyArray={coins}/>
+           <CurrencyList currencyArray={coins} setSelectedCurrency={setSelectedCurrency}/>
            <Converter currencyNames={coinsName} coins={coins}/>
+           <CurrencyChart currency={coins}/>
         </div>
     )
 }
