@@ -10,6 +10,7 @@ import ProfilePage from './components/ProfilePage/ProfilePage';
 
 
 function App() {
+  const [loading, setLoading] = useState(true)
   const [coinsName, setCoinsName] = useState(['bitcoin', 'ethereum', 'solana', 'dogecoin'])
   const [prices, setPrices] = useState([])
   const [coins, setCoins] = useState([])
@@ -38,6 +39,7 @@ function App() {
 
       setCoins(resCoins);
       setPrices(resPrices);
+      setLoading(false)
     } catch (error) {
       console.error(error);
     }
@@ -46,21 +48,21 @@ function App() {
 
   useEffect(() => {
     getData();
-    console.log(coins, prices);
   }, []);
 
 
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Header userName='Roman Nichipurenko' userPhoto=''/>
-        <Routes>
-          <Route path='/' element={<HomePage coins={coins} coinsName={coinsName} prices={prices}/>}/>
-          <Route path="/profile" element={<ProfilePage coins={coins}/>}/>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+  if (!loading){
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Header userName='Roman Nichipurenko' userPhoto=''/>
+          <Routes>
+            <Route path='/' element={<HomePage coins={coins} coinsName={coinsName} prices={prices}/>}/>
+            <Route path="/profile" element={<ProfilePage coins={coins}/>}/>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    )}
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from "reactstrap";
 import Balance from "./Balance/Balance";
-import Table from "./Table/Table";
+import TableCpmponent from "./TableComponent/TableComponent";
 
 import './ProfilePage.scss'
 
@@ -11,7 +11,9 @@ export default class ProfilePage extends Component{
 
         this.toogleDropDown = this.toogleDropDown.bind(this)
         this.addToCurrentCurrency = this.addToCurrentCurrency.bind(this)
-        //this.removeFromCurrentCurrency = this.removeFromCurrentCurrency.bind(this)
+        this.addToHolding = this.addToHolding.bind(this)
+        this.subtractFromHolding = this.subtractFromHolding.bind(this)
+        this.calculateBalance =this.calculateBalance.bind(this)
 
         this.state = {
             dropDownOpen: false,
@@ -34,18 +36,52 @@ export default class ProfilePage extends Component{
         })
     }
 
-    // addToHolding(currnecyName){
-    //     this
-    // }
+    addToHolding(currnecyName, coinCount){
+        if (this.state.holding[currnecyName] == NaN || this.state.holding[currnecyName] == undefined){
+            this.setState({
+                holding: {...this.state.holding,
+                    [currnecyName]: coinCount}
+            }, () => this.calculateBalance())
+        }
+        else{
+            this.setState({
+                holding: {...this.state.holding,
+                    [currnecyName]: this.state.holding[currnecyName] + coinCount}
+            }, () => this.calculateBalance())
+        }
+    }
+
+    subtractFromHolding(currnecyName, coinCount){
+        if (this.state.holding[currnecyName] == NaN || this.state.holding[currnecyName] == undefined){
+            this.setState({
+                holding: {...this.state.holding,
+                    [currnecyName]: coinCount}
+            }, () => this.calculateBalance())
+        }
+        else{
+            let res = this.state.holding[currnecyName] - coinCount 
+            if (res < 0) {res = 0}
+            this.setState({
+                holding: {...this.state.holding,
+                    [currnecyName]: res}
+            }, () => this.calculateBalance())
+        }
+        
+    }
     
-    // removeFromCurrentCurrency(coin){
-    //     const index = this.state.currencyProfileList.indexOf(coin);
-    //     if (index > -1) {
-    //         this.setState({
-    //             currencyProfileList: this.state.currencyProfileList.splice(index, index)
-    //         })
-    //     }
-    // }
+    calculateBalance(){
+        let res = 0
+        Object.keys(this.state.holding).forEach( item =>{
+            this.state.coins.forEach(coin =>{
+                if (coin.name == item){
+                    res += coin.market_data.current_price.usd * this.state.holding[item]
+                }
+            })
+        })
+        this.setState({
+            balance: res
+        })
+    }
 
     render(){
         return(
@@ -63,8 +99,13 @@ export default class ProfilePage extends Component{
                         </DropdownMenu>
                     </Dropdown>
                 </div>
-                <Balance totalBalance={this.state.balance}/>
-                {/* <Table coins={this.state.currencyProfileList} delete={this.removeFromCurrentCurrency}/> */}
+                <Balance balance={this.state.balance}/>
+                <TableCpmponent 
+                    currencyProfileList={this.state.currencyProfileList} 
+                    holding={this.state.holding} 
+                    addToHolding={this.addToHolding}
+                    subtractFromHolding={this.subtractFromHolding}
+                />
             </div>
         )
     }

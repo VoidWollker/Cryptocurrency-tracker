@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import './Balance.scss'
 
-export default function Balance({totalBalance, balanceChange}){
+export default function Balance({balance, balanceChange}){
+    const [totalBalance, setTotalBalance] = useState(balance);
+
+    useEffect(() =>{
+        console.log('totalBalance');
+        setTotalBalance(balance)
+    }, [balance])
+
     return(
         <div className="balance">
             <div className="balance-item" id="totalBalance">
