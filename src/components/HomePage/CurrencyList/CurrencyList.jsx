@@ -8,17 +8,18 @@ export default function CurrencyList({currencyArray, setSelectedCurrency}) {
     return(
         <div className="currencyList">
         <h2>Current prices of coins</h2>    
-        {currencyArray.map((currency =>{
+        {currencyArray.map((currency, index) =>{
             if (currency.name != 'USD'){
                 return(
                     <CurrencyItem
                         setSelectedCurrency={setSelectedCurrency}
+                        selectedIndex={index}
                         coin={currency}
                         key={currency.id}
                     />
                 )
             }
-        }))}
+        })}
     </div>
     )
 }
