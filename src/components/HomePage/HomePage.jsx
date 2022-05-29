@@ -8,7 +8,7 @@ export default function ReviewPage({coins, coinsName, prices}){
     const [selectedCurrency, setSelectedCurrency] = useState(0)
 
     useEffect(() =>{
-        console.log(selectedCurrency);
+        console.log(prices[selectedCurrency]);
     })
 
     return(

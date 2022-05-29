@@ -30,7 +30,7 @@ function App() {
         coinsName.map(
           (coinName) =>
             axios
-              .get('https://api.coingecko.com/api/v3/coins/' + coinName +'/market_chart?vs_currency=usd&days=14')
+              .get('https://api.coingecko.com/api/v3/coins/' + coinName +'/market_chart?vs_currency=usd&days=14&interval=daily')
               .then((res) => res.data.prices)
           
         )
