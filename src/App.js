@@ -36,32 +36,12 @@ function App() {
         )
       )
 
-      // const resCoins = []
-      // for (let coinName of coinsName){
-      //   let coin = await axios.get('https://api.coingecko.com/api/v3/coins/' + coinName)
-      //   resCoins.push(coin.data)
-      // }
-
-      // let usd = {name: 'USD', symbol: 'usd', market_data: {current_price: {}}}
-      // for (let currency of resCoins){
-      //   usd.market_data.current_price[currency.id] =  1 / currency.market_data.current_price.usd
-      // }
-      // resCoins.push(usd)
-
       setCoins(resCoins);
       setPrices(resPrices);
     } catch (error) {
       console.error(error);
     }
   };
-
-  // const getPrices = async () =>{
-  //   let prices = await axios.get('https://api.coingecko.com/api/v3/coins/' + currency.id +'/market_chart?vs_currency=usd&days=14')
-  //   prices = prices.data.prices.map(item => {
-  //       return item[1]
-  //   })
-  //   setDataset(prices)
-  // }
 
 
   useEffect(() => {
