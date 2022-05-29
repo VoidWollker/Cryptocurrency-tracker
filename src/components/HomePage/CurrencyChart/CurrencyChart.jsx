@@ -12,7 +12,6 @@ export default function CurrencyChart({prices}){
     const [dataSet, setDataset] = useState(prices.map(price =>  price[1]));
 
     useEffect(() =>{
-        console.log('change');
         setDataset(prices)
     }, [prices])
 

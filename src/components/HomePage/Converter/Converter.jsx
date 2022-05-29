@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, InputGroup, InputGroupText} from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
+import './Converter.scss'
 
 export default function Converter({coins, selectedCurrency}){
     const [rigthInputVale, setRigthInputValue] = useState('')
@@ -18,22 +19,30 @@ export default function Converter({coins, selectedCurrency}){
     }
 
     const calculate = () =>{
-        setRigthInputValue(Number(leftInputVale) * coins[selectedDropdownIndex].market_data.current_price[selectedCurrency.symbol])
+        setRigthInputValue((Number(leftInputVale) *
+            coins[selectedCurrency].market_data.current_price.usd) /
+            coins[selectedDropdownIndex].market_data.current_price.usd)
     }
+
+    useEffect(() =>{
+        calculate()
+    }, [selectedCurrency, leftInputVale, selectedDropdownItem])
 
     return(
         <div className="converter">
                 <InputGroup className="converter-inputGroup">
-                    <Input value={leftInputVale} onChange={e => {setLeftInputValue(e.target.value.replace(/\D/g, '')); calculate()}}/>
+                    <InputGroupText>{coins[selectedCurrency].name}</InputGroupText>
+                    <Input value={leftInputVale} 
+                        onChange={(e) => {setLeftInputValue(e.target.value.replace(/\D/g, '')); calculate()}}/>
                 </InputGroup>
                 <FontAwesomeIcon icon={faArrowRightArrowLeft} className="converter-arrows"/>
                 <InputGroup className="converter-inputGroup">
-                    <Dropdown isOpen={openDropdown} toggle={setOpenDropdown(!openDropdown)}>
-                        <DropdownToggle caret>{selectedDropdownItem.name}</DropdownToggle>
+                    <Dropdown isOpen={openDropdown} toggle={e => setOpenDropdown(!openDropdown)}>
+                        <DropdownToggle caret>{selectedDropdownItem}</DropdownToggle>
                         <DropdownMenu>
                             {coins.map((coin, index) =>{
                                 if (coin.name !== selectedDropdownItem.name) return(
-                                    <DropdownItem onClick={(e) => {chooseItem(e, currencyName, index); console.log(index)}}>{coin.name}</DropdownItem>
+                                    <DropdownItem onClick={(e) => {chooseItem(e, coin.name, index)}}>{coin.name}</DropdownItem>
                                 )
                             })}
                         </DropdownMenu>
