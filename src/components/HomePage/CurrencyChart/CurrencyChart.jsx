@@ -11,6 +11,11 @@ export default function CurrencyChart({prices}){
     const [labels, setLabels] = useState([14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
     const [dataSet, setDataset] = useState(prices.map(price =>  price[1]));
 
+    useEffect(() =>{
+        console.log('change');
+        setDataset(prices)
+    }, [prices])
+
     const data = {
         labels: labels,
         datasets: [{

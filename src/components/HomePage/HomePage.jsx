@@ -7,6 +7,10 @@ import CurrencyChart from './CurrencyChart/CurrencyChart'
 export default function ReviewPage({coins, coinsName, prices}){
     const [selectedCurrency, setSelectedCurrency] = useState(0)
 
+    useEffect(() =>{
+        console.log(selectedCurrency);
+    })
+
     return(
         <div className="reviewPage">
            <CurrencyList currencyArray={coins} setSelectedCurrency={setSelectedCurrency}/>
