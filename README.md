@@ -14,57 +14,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
+# О проекте
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Проект работает с курсом валют. Доступные монеты: bitcoin, ethereum. Данный список можно увеличить прописав нужные названия монет в массив с файле App.js на 14 строке.
+Чтобы получить данные по курсу валют используется CoinGecko API/
+Проект содержит 2 страницы: главную и страницу профиля. 
 
-### `npm run build`
+## Главная страница
+Она является начальной при запуске проекта. Также логотип является ссылкой на главную страницу.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Данная страница позволяет:
+- Увидеть курс валют
+- Конвертировать выбранную валюту
+- Увидеть график изменения курса валюты за последние 14 дней
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Чтобы изменить выбранную валюту и увидеть график соответствующей ей нужно нажать на курс нужной валюты сверху страницы.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Страница профиля
 
-### `npm run eject`
+Чтобы перейти на данную страницу, нужно нажать на имя в правом верхней углу. Здесь отображён портфель криптовалюты пользователя.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Данная страница позволяет:
+- Увидеть текущий баланс пользователя, соответствующий количеству монет, которые есть у пользователя
+- Отслеживать выбранные монеты
+- Прибавлять или отнимать выбранное количество монет в своём портфеле
+- Увидеть диаграмму текущего распределения криптовалют в портфеле
