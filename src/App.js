@@ -55,7 +55,7 @@ function App() {
     return (
       <div className="App">
         <BrowserRouter>
-          <Header userName='Roman Nichipurenko' userPhoto=''/>
+          <Header userName='Profile_Nickname' userPhoto=''/>
           <Routes>
             <Route path='/' element={<HomePage coins={coins} coinsName={coinsName} prices={prices}/>}/>
             <Route path="/profile" element={<ProfilePage coins={coins}/>}/>
