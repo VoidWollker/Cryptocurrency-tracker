@@ -11,7 +11,7 @@ import ProfilePage from './components/ProfilePage/ProfilePage';
 
 function App() {
   const [loading, setLoading] = useState(true)
-  const [coinsName, setCoinsName] = useState(['bitcoin', 'ethereum', 'solana', 'dogecoin'])
+  const [coinsName, setCoinsName] = useState(['bitcoin', 'ethereum'])
   const [prices, setPrices] = useState([])
   const [coins, setCoins] = useState([])
 

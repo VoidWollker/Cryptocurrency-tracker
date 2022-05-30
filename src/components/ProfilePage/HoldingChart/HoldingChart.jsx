@@ -38,7 +38,7 @@ export default function HoldingChart({holding}){
             }
         },
         datasets: [{
-            label: 'coin count',
+            label: 'Coin count',
             data: dataSet,
             fill: false,
             backgroundColor: '#bca08a',
@@ -49,6 +49,37 @@ export default function HoldingChart({holding}){
 
     return <Bar 
         data={data} 
+        options={{
+            plugins:{
+                legend:{
+                    labels:{
+                        color: 'white',
+                        font:{
+                            size: 14
+                        }
+                    }
+                },
+                
+            },
+            scales:{
+                yAxes:{
+                    ticks:{
+                        color: 'white',
+                        font:{
+                            size: 14
+                        }
+                    }
+                },
+                xAxes:{
+                    ticks:{
+                        color: 'white',
+                        font:{
+                            size: 14
+                        }
+                    }
+                }
+            }
+        }}
         className='bar' 
         width={'4000'}
         height={'2000'}
