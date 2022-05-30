@@ -89,8 +89,8 @@ export default class ProfilePage extends Component{
             <div className="profilePage">
                 <div className="profilePage-header">
                     <h2>My Portfolio</h2>
-                    <Dropdown isOpen={this.state.dropDownOpen} toggle={this.toogleDropDown}>
-                        <DropdownToggle caret>Add New Coin</DropdownToggle>
+                    <Dropdown isOpen={this.state.dropDownOpen} toggle={this.toogleDropDown} >
+                        <DropdownToggle caret className='profilePage-header-button'>Add New Coin</DropdownToggle>
                         <DropdownMenu>
                             {this.state.coins.map(currency =>{
                                 if (!this.state.currencyProfileList.includes(currency)){

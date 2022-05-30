@@ -30,6 +30,11 @@ export default function Converter({coins, selectedCurrency}){
         }
     }
 
+    const changeInputValue = (e) =>{
+        let validNumber = new RegExp(/^\d*\.?\d*$/)
+        if (validNumber.test(e.target.value)){setLeftInputValue(e.target.value)}
+    }
+
     useEffect(() =>{
         calculate()
     }, [selectedCurrency, leftInputVale, selectedDropdownItem])
@@ -39,7 +44,7 @@ export default function Converter({coins, selectedCurrency}){
                 <InputGroup className="converter-inputGroup">
                     <InputGroupText>{coins[selectedCurrency].name}</InputGroupText>
                     <Input value={leftInputVale} 
-                        onChange={(e) => {setLeftInputValue(e.target.value.replace(/\D/g, '')); calculate()}}/>
+                        onChange={(e) => {changeInputValue(e); calculate()}}/>
                 </InputGroup>
                 <FontAwesomeIcon icon={faArrowRightArrowLeft} className="converter-arrows"/>
                 <InputGroup className="converter-inputGroup">
@@ -54,7 +59,7 @@ export default function Converter({coins, selectedCurrency}){
                             <DropdownItem onClick={() => {chooseItem('USD', coins.length)}}>USD</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
-                    <Input value={rigthInputVale} onChange={e => {setRigthInputValue(e.target.value.replace(/\D/g, ''))}}/>
+                    <Input value={rigthInputVale} onChange={e => {setRigthInputValue(e.target.value.replace(/\D/g, ''))}} disabled/>
                 </InputGroup>
             </div>
     )
