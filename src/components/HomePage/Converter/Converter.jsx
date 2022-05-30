@@ -8,20 +8,26 @@ import './Converter.scss'
 export default function Converter({coins, selectedCurrency}){
     const [rigthInputVale, setRigthInputValue] = useState('')
     const [leftInputVale, setLeftInputValue] = useState('')
-    const [selectedDropdownItem, setSelectedDropdownItem] = useState('')
+    const [selectedDropdownItem, setSelectedDropdownItem] = useState(coins[0].name)
     const [selectedDropdownIndex, setSelectedDropdownIndex] = useState(0)
     const [openDropdown, setOpenDropdown] = useState(false)
 
-    const chooseItem = (e, choosenCurrencyName, choosenCurrencyIndex) =>{
+    const chooseItem = (choosenCurrencyName, choosenCurrencyIndex) =>{
         setSelectedDropdownItem(choosenCurrencyName)
         setSelectedDropdownIndex(choosenCurrencyIndex)
         calculate()
     }
 
     const calculate = () =>{
-        setRigthInputValue((Number(leftInputVale) *
-            coins[selectedCurrency].market_data.current_price.usd) /
-            coins[selectedDropdownIndex].market_data.current_price.usd)
+        if (selectedDropdownItem == 'USD'){
+            setRigthInputValue(Number(leftInputVale) *
+                coins[selectedCurrency].market_data.current_price.usd)
+        }
+        else{
+            setRigthInputValue((Number(leftInputVale) *
+                coins[selectedCurrency].market_data.current_price.usd) /
+                coins[selectedDropdownIndex].market_data.current_price.usd)
+        }
     }
 
     useEffect(() =>{
@@ -42,9 +48,10 @@ export default function Converter({coins, selectedCurrency}){
                         <DropdownMenu>
                             {coins.map((coin, index) =>{
                                 if (coin.name !== selectedDropdownItem.name) return(
-                                    <DropdownItem onClick={(e) => {chooseItem(e, coin.name, index)}}>{coin.name}</DropdownItem>
+                                    <DropdownItem onClick={() => {chooseItem(coin.name, index)}}>{coin.name}</DropdownItem>
                                 )
                             })}
+                            <DropdownItem onClick={() => {chooseItem('USD', coins.length)}}>USD</DropdownItem>
                         </DropdownMenu>
                     </Dropdown>
                     <Input value={rigthInputVale} onChange={e => {setRigthInputValue(e.target.value.replace(/\D/g, ''))}}/>

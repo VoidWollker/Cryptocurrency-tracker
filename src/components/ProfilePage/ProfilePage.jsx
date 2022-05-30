@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Button, Dropdown, DropdownToggle, DropdownItem, DropdownMenu } from "reactstrap";
 import Balance from "./Balance/Balance";
-import TableCpmponent from "./TableComponent/TableComponent";
+import TableComponent from "./TableComponent/TableComponent";
 
 import './ProfilePage.scss'
+import HoldingChart from "./HoldingChart/HoldingChart";
 
 export default class ProfilePage extends Component{
     constructor(props){
@@ -100,12 +101,15 @@ export default class ProfilePage extends Component{
                     </Dropdown>
                 </div>
                 <Balance balance={this.state.balance}/>
-                <TableCpmponent 
+                <TableComponent 
                     currencyProfileList={this.state.currencyProfileList} 
                     holding={this.state.holding} 
                     addToHolding={this.addToHolding}
                     subtractFromHolding={this.subtractFromHolding}
                 />
+                <div className='holdingChart'>
+                    <HoldingChart holding={this.state.holding} />
+                </div>
             </div>
         )
     }

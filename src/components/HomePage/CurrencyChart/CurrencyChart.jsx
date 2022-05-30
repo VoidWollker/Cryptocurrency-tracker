@@ -8,7 +8,7 @@ Chart.register(...registerables);
 Chart.register(CategoryScale);
 
 export default function CurrencyChart({prices}){
-    const [labels, setLabels] = useState([14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+    const [labels, setLabels] = useState([14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
     const [dataSet, setDataset] = useState(prices.map(price =>  price[1]));
 
     useEffect(() =>{

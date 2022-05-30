@@ -1,3 +1,7 @@
+.profilePage{
+    height: 100%;
+}
+
 .profilePage-header{
     display: flex;
     flex-direction: row;
@@ -21,4 +25,10 @@
     background-color: #bca08a;
     color: #222129;
     border-color: #222129;
+}
+
+.holdingChart{
+    display: flex;
+    width: 60vw;
+    margin: 40px auto 0 auto;
 }
